@@ -1,0 +1,17 @@
+{
+  "name": "score_keep",
+  "version": "0.0.1",
+  "description": "Web app for keeping scores in simple board and card games",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nick Burwell",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.12.3",
+    "nodemon": "^1.3.7",
+    "underscore": "*"
+  }
+}

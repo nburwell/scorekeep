@@ -1,0 +1,57 @@
+/***********************************/
+/* LIST STYLING                  */
+/***********************************/
+ul.collection-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  outline: none;
+}
+
+ul.collection-list li {
+  margin: 10px;
+  padding: 10px;
+
+  border: 1px solid #C9C9C9;
+  background: #F0F0F0;
+  border-radius: 4px;   /* may need vendor varients */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14);   /* may need vendor varients */
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+ul.collection-list li.selected {
+  border: 1px solid #2659D9;
+  color: #FFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);
+  background: #678BE4;
+}
+
+/***********************************/
+/* PLAYER STYLING                  */
+/***********************************/
+ul.collection-list li {
+  overflow: hidden;
+}
+
+ul.collection-list li .handle {
+  display: block;
+  float: left;
+  width: 50px;
+  cursor: pointer;
+  height: 100%;
+}
+
+ul.collection-list li h2 {
+  float: left;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul.collection-list li h3 {
+  float: right;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 20px;
+}
+
+
