@@ -4,11 +4,11 @@ app.Views.Game = Backbone.View.extend({
     //this.listenTo(this.model, "change", this.render);
   },
   
-  template: _.template("<h1>Players</h1><ul></ul><form><input type='text' class='form-input' name='name' /><a href='#' class='add-new btn btn-primary'>Add New</a></form>"),
+  template: _.template("<h1>Players</h1><ul></ul>"),
   
   events: {
-    "click .add-new": "_onAddNew",
-    "click":          "_onClick"
+    "click":          "_onClick",
+    "submit form":    "_onAddNew"
   },
   
   render: function() {
@@ -38,27 +38,26 @@ app.Views.Game = Backbone.View.extend({
     app.players.add({
       name: playerName,
       score: 0
+    }, {
+      at: app.players.length - 1
     });
     
     this._clearForm();
+    return false;
   },
   
   _clearForm: function() {
-    this.$('form input[name=name]').val('');
+    app.playerList.setSelectedModel();
+    
+    this.$('form button').blur();
+    this.$('form input[name=name]').val('').focus();
   },
   
   _onClick: function(evt) {
-    console.log(evt.target);
-    console.log(app.playerList.getSelectedModel());
-    
-    var list    = this.$('.collection-list')[0];
-    
-    window.lt = evt.target;
-    window.list = list;
+    var list = this.$('.collection-list')[0];
     
     if (evt.target !== list && !$.contains(list, evt.target)) {
       // clear selection if I clicked myself when already in selected state
-      console.log("clearing selection");
       app.playerList.setSelectedModel();
     }
   }

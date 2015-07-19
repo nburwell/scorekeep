@@ -1,4 +1,11 @@
 /***********************************/
+/* GAME STYLING                    */
+/***********************************/
+body {
+  background-color: #333;
+}
+
+/***********************************/
 /* LIST STYLING                  */
 /***********************************/
 ul.collection-list {
@@ -10,20 +17,36 @@ ul.collection-list {
 
 ul.collection-list li {
   margin: 10px;
-  padding: 10px;
 
-  border: 1px solid #C9C9C9;
-  background: #F0F0F0;
-  border-radius: 4px;   /* may need vendor varients */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14);   /* may need vendor varients */
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid #555;
+  border-radius: 4px;
+
+  color: #ccc;
 }
 
 ul.collection-list li.selected {
-  border: 1px solid #2659D9;
-  color: #FFF;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);
-  background: #678BE4;
+  background: #222;
+}
+
+ul.collection-list li.new {
+  border-style: dashed;
+}
+
+ul.collection-list li form {
+  padding: 10px;
+}
+
+ul.collection-list li form .form-control {
+  /*background-color: #ddd;
+  border: 1px solid #ccc;
+  color: #222;*/
+}
+
+ul.collection-list li form .btn {
+  /*background-color: #ddd;
+  border: 1px solid #ccc;
+  color: #222;*/
+  margin-left: 10px;
 }
 
 /***********************************/
@@ -34,21 +57,37 @@ ul.collection-list li {
 }
 
 ul.collection-list li .handle {
-  display: block;
   float: left;
   width: 50px;
+  padding-left: 25px;
+  margin-left: -10px;
+  
   cursor: pointer;
-  height: 100%;
+  display: block;
+  
+  font-size: 1.5em;
+  color: #666;
+  font-weight: 400;
+  
+  line-height: 50px;
 }
 
 ul.collection-list li h2 {
   float: left;
+  font-weight: 400;
+  
+  padding: 10px; 
+  
   margin-top: 0;
   margin-bottom: 0;
 }
 
 ul.collection-list li h3 {
   float: right;
+  font-weight: 400;
+ 
+  padding: 10px; 
+  
   margin-top: 0;
   margin-bottom: 0;
   margin-right: 20px;
