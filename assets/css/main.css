@@ -93,4 +93,7 @@ ul.collection-list li h3 {
   margin-right: 20px;
 }
 
+ul.collection-list li h3 input {
+  font-size: 18px;
+}
 

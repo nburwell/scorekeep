@@ -27,6 +27,7 @@ app.Views.Game = Backbone.View.extend({
       }
     });
 
+    app.playerList.on("selectionChanged", this._onSelectionChanged, this);
     app.playerList.render();
     
     return this;
@@ -60,6 +61,16 @@ app.Views.Game = Backbone.View.extend({
       // clear selection if I clicked myself when already in selected state
       app.playerList.setSelectedModel();
     }
+  },
+  
+  _onSelectionChanged: function(newSelectedModels, oldSelectedModels) {
+    _.each(oldSelectedModels, function(model) {
+      model.set({ active: false });
+    });
+    
+    _.each(newSelectedModels, function(model) {
+      model.set({ active: true });
+    });
   }
 
 });
