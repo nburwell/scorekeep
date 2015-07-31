@@ -64,6 +64,7 @@ app.Views.Game = Backbone.View.extend({
   },
   
   _onSelectionChanged: function(newSelectedModels, oldSelectedModels) {
+    console.log("onSelectedChange");
     _.each(oldSelectedModels, function(model) {
       model.set({ active: false });
     });
