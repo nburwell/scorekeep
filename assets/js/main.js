@@ -8,3 +8,7 @@ app.players = new app.Collections.Players(playerModels);
 
 app.game = new app.Views.Game({ el: $("#app") });
 app.game.render();
+
+app.players.models[0].addScore(7);
+app.players.models[0].addScore(4);
+app.players.models[0].addScore(12);

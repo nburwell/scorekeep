@@ -5,7 +5,8 @@ app.Views.HistorySummary = Backbone.View.extend({
   },
   
   events: {
-    "click .summary": "_onSummaryClick"
+    "click .summary": "_onSummaryClick",
+    "click .delete":  "_onDeleteClick"
   },
   
   template: _.template(
@@ -13,7 +14,7 @@ app.Views.HistorySummary = Backbone.View.extend({
       "<a href='#' class='summary'><%= scores.length %></a>" +
       "<div class='history' style='display:none'>" +
         "<% for (score in scores) { %>" +
-          "<%= score %><br />" +
+          "<%= scores[score] %> <a href='#' class='delete' data-score-index='<%= score %>'>x</a><br />" +
         "<% } %>" +
       "</div>" +
       "<% } else { %>" +
@@ -27,6 +28,15 @@ app.Views.HistorySummary = Backbone.View.extend({
     
   _onSummaryClick: function(evt) {
     this.$('.history').slideToggle();
+    $(evt.target).blur();
+    return false;
+  },
+  
+  _onDeleteClick: function(evt) {
+    var index = $(evt.target).data('score-index');
+    console.log("Deleting: " + index);
+
+    this.model.removeScoreAt(index);
     $(evt.target).blur();
     return false;
   }

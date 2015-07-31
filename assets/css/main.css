@@ -111,3 +111,8 @@ ul.collection-list li .history-summary {
   margin-bottom: 0;
   margin-right: 20px;
 }
+
+.history-summary,
+.history-summary .history {
+  text-align: right;
+}
