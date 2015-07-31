@@ -4,10 +4,12 @@ app.Views.Player = Backbone.View.extend({
   
   initialize: function() {
     this.listenTo(this.model, "change", this.sync);
+    this.historySummaryView = new app.Views.HistorySummary({ model: this.model });
   },
   
   events: {
-    "change .score": "_onScoreChange"
+    "change .score": "_onScoreChange",
+    "keyup .score": "_onScoreKeyPress"
   },
   
   template: _.template(
@@ -16,8 +18,9 @@ app.Views.Player = Backbone.View.extend({
     "<% } %>" +
     "<% if (score !== null) { %>" +
       "<span class='handle'>::</span><h2><%= name %></h2>" +
+      "<div class='history-summary'></div>" +
       "<h3 class='readonly'><%= score %></h3>" +
-      "<h3 class='active'><input type='text' name='score' value='' class='form-control' placeholder='add to score' /></h3>" +
+      "<h3 class='active'><input type='text' name='score' value='' class='score form-control' placeholder='add to score' /></h3>" +
     "<% } %>"),
   
   render: function() {
@@ -27,13 +30,12 @@ app.Views.Player = Backbone.View.extend({
   },
   
   sync: function() {
-    this.$('input[name=score]').trigger('change');
+    if (this.$('input[name=score]').val() && !this.changingScore) {
+      this.$('input[name=score]').trigger('change');
+    }
     
-    this.$('.readonly').text(this.model.get('score'));
-    
+    this.$('.readonly').text(this.model.get('score'));    
     this.$el.toggleClass('new', this.model.get('score') === null);
-
-    console.log("sync. active: " + this.model.get('active'));
     
     if (this.model.get('active')) {
       this.$('.active').show();
@@ -47,14 +49,24 @@ app.Views.Player = Backbone.View.extend({
     } else {
       this.$('.active').hide();
       this.$('.readonly').show();
-      
       this.$('input[name=score]').val('');
     }
+    
+    this.$('.history-summary').append(this.historySummaryView.render().$el);
   },
   
   _onScoreChange: function() {
-    console.log("onScoreChange");
-    this.model.set({ score: this.model.get('score') + parseInt(this.$('.score').val() || 0) });
+    var newScore = parseInt(this.$('.score').val()) || 0;
+    
+    this.changingScore = true;
+    this.model.addScore(newScore);
+    this.changingScore = false;
+  },
+  
+  _onScoreKeyPress: function(evt) {
+    if (evt.which === 13) {
+      this.$('input[name=score]').val('');
+    }
   }
 
 });

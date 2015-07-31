@@ -102,3 +102,12 @@ ul.collection-list li h3 input {
   font-size: 18px;
 }
 
+ul.collection-list li .history-summary {
+  float: right;
+ 
+  padding: 10px; 
+  
+  margin-top: 10px;
+  margin-bottom: 0;
+  margin-right: 20px;
+}
